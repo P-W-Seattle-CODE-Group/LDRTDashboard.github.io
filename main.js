@@ -2,17 +2,17 @@ import * as d3 from 'd3';
 
 function radarChart () {
     let data = [];
-    let features = ["A", "B", "C", "D", "E", "F"];
+    let features = ["A", "B", "C", "D", "E", "F", "G", "H"];
     
-    for (var i = 0; i<3; i++){
+    for (var i = 0; i<1; i++){
         var point = {}
         features.forEach(f => point[f] = 1 + Math.random() * 8);
         data.push(point);
     }
     console.log(data);
     
-    let width = 300;
-    let height = 300;
+    let width = 350;
+    let height = 350;
     let svg = d3.select("#radar-chart").append("svg")
         .attr("width", width)
         .attr("height", height);
@@ -38,7 +38,7 @@ function radarChart () {
         .join(
             enter => enter.append("text")
                 .attr("class", "ticklabel")
-                .attr("x", width / 2+5)
+                .attr("x", width / 2 + 5)
                 .attr("y", d => height / 2 - radialScale(d))
                 .text(d => d.toString())
         );
@@ -58,7 +58,7 @@ function radarChart () {
             "label_coord": angleToCoordinate(angle, 10.5)
         };
     });
-
+    
     svg.selectAll("line")
         .data(featureData)
         .join(
@@ -77,10 +77,12 @@ function radarChart () {
                 .attr("y", d => d.label_coord.y)
                 .text(d => d.name)
         );
+    
     let line = d3.line()
         .x(d => d.x)
         .y(d => d.y);
-    let colors = ["darkorange", "gray", "navy"];
+
+    let colors = ["red", "gray", "navy"];
 
     function getPathCoordinates(data_point){
         let coordinates = [];
