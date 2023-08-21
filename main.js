@@ -1,8 +1,8 @@
 import * as d3 from 'd3';
 
-function radarChart () {
+let features = ["EUI", "Solar", "Heating", "Cooling", "Water", "Lighting"];
+function radarChart (features, div) {
     let data = [];
-    let features = ["A", "B", "C", "D", "E", "F", "G", "H"];
     
     for (var i = 0; i<1; i++){
         var point = {}
@@ -13,7 +13,7 @@ function radarChart () {
     
     let width = 350;
     let height = 350;
-    let svg = d3.select("#radar-chart").append("svg")
+    let svg = d3.select(div).append("svg")
         .attr("width", width)
         .attr("height", height);
     
@@ -38,7 +38,7 @@ function radarChart () {
         .join(
             enter => enter.append("text")
                 .attr("class", "ticklabel")
-                .attr("x", width / 2 + 5)
+                .attr("x", width / 2 + 2)
                 .attr("y", d => height / 2 - radialScale(d))
                 .text(d => d.toString())
         );
@@ -108,4 +108,45 @@ function radarChart () {
         );
 
 };
-radarChart();
+radarChart(features, "#chart-one");
+radarChart(features, "#chart-two");
+
+function lineGraph() {
+    let data = [0,2,3,5,1,7,3,4];
+    let date = [0,1,2,3,4,5,6,7];
+
+    const x = d3.scaleUtc()
+        .domain([0,10])
+        .range([0,10]);
+    const y = d3.scaleLinear()
+        .domain([0,10])
+        .range([0,10])
+
+    let width = 350;
+    let height = 350;
+    let svg = d3.select("#line-graph").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("viewBox", [0,0,width,height])
+        .attr("style", "max-width: 100%; height: auto; overflow: visible; font: 10px sans-serif;");
+
+    svg.append("g")
+        .attr("transform", `translate(0,${height - marginBottom})`)
+        .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0));
+
+    svg.append("g")
+        .attr("transform", `translate(${marginLeft},0)`)
+        .call(d3.axisLeft(y))
+        .call(g => g.select(".domain").remove())
+        .call(voronoi ? () => {} : g => g.selectAll(".tick line").clone()
+            .attr("x2", width - marginLeft - marginRight)
+            .attr("stroke-opacity", 0.1))
+        .call(g => g.append("text")
+            .attr("x", -marginLeft)
+            .attr("y", 10)
+            .attr("fill", "currentColor")
+            .attr("text-anchor", "start")
+            .text("↑ Unemployment (%)"));
+
+};
+/*lineGraph();*/
