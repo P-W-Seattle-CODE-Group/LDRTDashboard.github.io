@@ -110,6 +110,8 @@ function radarChart (features, div) {
 };
 radarChart(features, "#chart-one");
 radarChart(features, "#chart-two");
+radarChart(features, "#chart-three");
+radarChart(features, "#chart-four");
 
 function lineGraph() {
     let data = [0,2,3,5,1,7,3,4];
