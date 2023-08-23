@@ -1,6 +1,106 @@
 import * as d3 from 'd3';
 
-let features = ["EUI", "Solar", "Heating", "Cooling", "Water", "Lighting"];
+let projectNumber = '';
+let ec = '';
+let oc = '';
+let eui = '';
+let lpd = '';
+let sDA = '';
+let aSE = '';
+let sDG = '';
+let iwui = '';
+
+function getProjectNumber() {
+    const input = document.getElementById('projectNumber');
+    const button = document.getElementById('projectNumberButton');
+    button.addEventListener('click', function() {
+        projectNumber = input.value;
+        console.log(projectNumber);
+    });
+};
+getProjectNumber();
+
+function getEC() {
+    const input = document.getElementById('ec');
+    const button = document.getElementById('ecButton');
+    button.addEventListener('click', function() {
+        ec = input.value;
+        console.log(ec);
+    });
+};
+getEC();
+
+function getOC() {
+    const input = document.getElementById('oc');
+    const button = document.getElementById('ocButton');
+    button.addEventListener('click', function() {
+        oc = input.value;
+        console.log(oc);
+    });
+};
+getOC();
+
+function getEUI() {
+    const input = document.getElementById('eui');
+    const button = document.getElementById('euiButton');
+    button.addEventListener('click', function() {
+        eui = input.value;
+        console.log(eui);
+    });
+};
+getEUI();
+
+function getLPD() {
+    const input = document.getElementById('lpd');
+    const button = document.getElementById('lpdButton');
+    button.addEventListener('click', function() {
+        lpd = input.value;
+        console.log(lpd);
+    });
+};
+getLPD();
+
+function getSDA() {
+    const input = document.getElementById('sDA');
+    const button = document.getElementById('sDAButton');
+    button.addEventListener('click', function() {
+        sDA = input.value;
+        console.log(sDA);
+    });
+};
+getSDA();
+
+function getASE() {
+    const input = document.getElementById('aSE');
+    const button = document.getElementById('aSEButton');
+    button.addEventListener('click', function() {
+        aSE = input.value;
+        console.log(aSE);
+    });
+};
+getASE();
+
+function getSDG() {
+    const input = document.getElementById('sDG');
+    const button = document.getElementById('sDGButton');
+    button.addEventListener('click', function() {
+        sDG = input.value;
+        console.log(sDG);
+    });
+};
+getSDG();
+
+function getIWUI() {
+    const input = document.getElementById('iwui');
+    const button = document.getElementById('iwuiButton');
+    button.addEventListener('click', function() {
+        iwui = input.value;
+        console.log(iwui);
+    });
+};
+getIWUI();
+
+let features = ["EC", "OC", "EUI", "LPD", "sDA", "aSE", "sDG", "IWUI"];
 function radarChart (features, div) {
     let data = [];
     
@@ -132,23 +232,6 @@ function lineGraph() {
         .attr("viewBox", [0,0,width,height])
         .attr("style", "max-width: 100%; height: auto; overflow: visible; font: 10px sans-serif;");
 
-    svg.append("g")
-        .attr("transform", `translate(0,${height - marginBottom})`)
-        .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0));
-
-    svg.append("g")
-        .attr("transform", `translate(${marginLeft},0)`)
-        .call(d3.axisLeft(y))
-        .call(g => g.select(".domain").remove())
-        .call(voronoi ? () => {} : g => g.selectAll(".tick line").clone()
-            .attr("x2", width - marginLeft - marginRight)
-            .attr("stroke-opacity", 0.1))
-        .call(g => g.append("text")
-            .attr("x", -marginLeft)
-            .attr("y", 10)
-            .attr("fill", "currentColor")
-            .attr("text-anchor", "start")
-            .text("↑ Unemployment (%)"));
 
 };
 /*lineGraph();*/
