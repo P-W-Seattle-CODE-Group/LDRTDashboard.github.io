@@ -55,7 +55,9 @@ function radarChart (features, div, featurePoints) {
     let data = [];
     for (var i = 0; i<1; i++){
         var point = {}
-        features.forEach(f => point[f] = featurePoints[f]);
+        features.forEach((f, index) => {
+            point[f] = featurePoints[index];
+        });
         data.push(point);
     };
     console.log(data);
