@@ -209,7 +209,7 @@ function donutChart(div) {
         .attr("fill", d => color(d.data.label))
         .attr("d", arc)
     .append("title")
-        .text(d => `${d.data.name}: ${d.data.value.toLocaleString()}`);
+        .text(d => `${d.data.label}: ${d.data.value.toLocaleString()}`);
 
     svg.append("g")
         .attr("font-family", "sans-serif")
@@ -222,7 +222,7 @@ function donutChart(div) {
         .call(text => text.append("tspan")
             .attr("y", "-0.4em")
             .attr("font-weight", "bold")
-            .text(d => d.data.name))
+            .text(d => d.data.label))
         .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append("tspan")
             .attr("x", 0)
             .attr("y", "0.7em")
