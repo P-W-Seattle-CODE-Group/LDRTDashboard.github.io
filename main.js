@@ -1,5 +1,4 @@
-import * as d3 from 'd3';
-import { greatestIndex } from 'd3';
+import 'https://unpkg.com/d3@7.8.5';
 
 let projectNumber = '';
 let ec = 0;
