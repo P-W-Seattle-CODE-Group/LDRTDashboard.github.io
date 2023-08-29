@@ -232,3 +232,30 @@ function donutChart(div) {
     return svg.node();
 };
 donutChart("#chart-two");
+
+function divergeBarChart() {
+
+    let barHeight = 25;
+    let marginTop = 30;
+    let marginRight = 60;
+    let marginBottom = 10;
+    let marginLeft = 60;
+    let height = Math.ceil((data.length + 0.1) * barHeight) + marginTop + marginBottom;
+
+    const x = d3.scaleLinear()
+        .domain(d3.extent(data, d => d.value))
+        .rangeRound([marginLeft, width - marginRight]);
+
+    const y = d3.scaleBand()
+        .domain(data.map(d => d.state))
+        .rangeRound([marginTop, height - marginBottom])
+        .padding(0.1);
+
+    const format = d3.format(metric === "absolute" ? "+,d" : "+.1%");
+    const tickFormat = metric === "absolute" ? d3.formatPrefix("+.1", 1e6) : d3.format("+0%");
+
+    const svg = d3.create("svg")
+        .attr("viewBox", [0,0,width,height])
+        .attr("style", ",axo-width: 100%; height: auto; font: 10px sans-serif");
+
+};
