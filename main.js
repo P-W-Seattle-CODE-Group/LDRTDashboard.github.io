@@ -259,3 +259,18 @@ function divergeBarChart() {
         .attr("style", ",axo-width: 100%; height: auto; font: 10px sans-serif");
 
 };
+
+class project {
+    constructor(projectNumber, projectType) {
+        this.projectNumber = projectNumber;
+        this.projectType = projectType;
+    }
+};
+
+let projectA = new project('184153.509', 'Lab');
+
+console.log(projectA.projectNumber, projectA.projectType);
+
+let projectB = new project('153512.554', 'Office');
+
+console.log(projectB.projectNumber, projectB.projectType);
